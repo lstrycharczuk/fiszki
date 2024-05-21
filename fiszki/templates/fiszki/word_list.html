@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiszki</title>
+        {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+<header>
+    <a href="{% url 'word_list' %}">Lista słówek</a>
+    <a href="{% url 'create_new' %}">Utwórz fiszki</a>
+    <a href="{% url 'fiszki' %}">Graj w fiszki</a>
+    <a href="{% url 'revision' %}">Powtórzenie</a>
+</header>
+<h1>Lista słówek</h1>
+<ul>
+    {% for word in word_list %}
+        <li>{{ word.polish_word }} - {{ word.english_word }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

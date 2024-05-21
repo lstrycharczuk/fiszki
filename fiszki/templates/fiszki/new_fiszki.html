@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiszki</title>
+        {% load static %}
+
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<header>
+    <a href="{% url 'word_list' %}">Lista słówek</a>
+    <a href="{% url 'create_new' %}">Utwórz fiszki</a>
+    <a href="{% url 'fiszki' %}">Graj w fiszki</a>
+    <a href="{% url 'revision' %}">Powtórzenie</a>
+</header>
+<h1>Wprowadź fiszki</h1>
+<form action="{% url 'create_new' %}" method="post">
+    {% csrf_token %}
+    <label for="polish">Słowo (po polsku):</label>
+    <input type="text" id="polish" name="polish">
+    <label for="english">Tłumaczenie (po angielsku):</label>
+    <input type="text" id="english" name="english">
+    <input type="submit" value="Dodaj">
+</form>
+</body>
+</html>

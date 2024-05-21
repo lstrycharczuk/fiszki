@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiszki</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<header>
+    <a href="{% url 'word_list' %}">Lista słówek</a>
+    <a href="{% url 'create_new' %}">Utwórz fiszki</a>
+    <a href="{% url 'fiszki' %}">Graj w fiszki</a>
+    <a href="{% url 'revision' %}">Powtórzenie</a>
+</header>
+<h1>Powtórka</h1>
+{% if word %}
+<div>
+    <h3>Jaki jest po angielsku: <h2>{{ word.polish_word }}</h2></h3>
+    </br>
+</div>
+{% if message %}
+<div>
+    <p>{{ message }}</p>
+    </br>
+</div>
+{% endif %}
+{% else %}
+<div>
+    </br>
+    <p>{{ error }}</p>
+</div>
+{% endif %}
+    <form action="{% url 'revision' %}" method="post">
+        {% csrf_token %}
+        <label for="guessed_word">Słowo (po angielsku):</label>
+        <input type="text" id="guessed_word" name="guessed_word" autocomplete="off">
+        <input type="submit" value="Sprawdź">
+    </form>
+
+</body>
+</html>
